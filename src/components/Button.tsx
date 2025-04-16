@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { ActivePage } from '../App';
+import { memo, ReactNode } from "react";
+import { ActivePage } from "../App";
 
 export interface ButtonProps {
   children: ReactNode;
@@ -8,37 +8,35 @@ export interface ButtonProps {
   onClearCompleted?: () => void;
 }
 
-const Button = ({
-  children,
-  activePage = null,
-  setActivePage = () => {},
-}: ButtonProps) => {
-  // Функция переключения активной страницы
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const  target = e.currentTarget;
-    const page = target.textContent?.toLowerCase();
+const Button = memo(
+  ({ children, activePage = null, setActivePage = () => {} }: ButtonProps) => {
+    // Функция переключения активной страницы
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+      const target = e.currentTarget;
+      const page = target.textContent?.toLowerCase();
 
-    // Проверка, что page является допустимым ActivePage
-    if (page === 'all' || page === 'active' || page === 'completed') {
-      setActivePage(page);
-    }
-  };
+      // Проверка, что page является допустимым ActivePage
+      if (page === "all" || page === "active" || page === "completed") {
+        setActivePage(page);
+      }
+    };
 
-  const childrenText = String(children).toLowerCase();
-  const isActive = activePage === childrenText;
+    const childrenText = String(children).toLowerCase();
+    const isActive = activePage === childrenText;
 
-  return (
-    <button
-      className={`rounded-sm px-1 transition-colors ${
-        isActive
-          ? 'border-1 border-gray-400 hover:bg-gray-100'
-          : ' hover:bg-gray-100 border-0'
-      }`}
-      onClick={handleClick}
-    >
-      {children}
-    </button>
-  );
-};
+    return (
+      <button
+        className={`rounded-sm px-1 transition-colors ${
+          isActive
+            ? "border-1 border-gray-400 hover:bg-gray-100"
+            : "border-0 hover:bg-gray-100"
+        }`}
+        onClick={handleClick}
+      >
+        {children}
+      </button>
+    );
+  },
+);
 
 export default Button;
