@@ -9,14 +9,14 @@
 
 🛠 Установка
 Шаги:
-git clone https://github.com/diskaunt/todoList.git
-cd ваш-проект
-npm install
+- git clone https://github.com/diskaunt/todoList.git
+- cd ваш-проект
+- npm install
 
 📚 Использование
-npm run start   # запуск проекта
-npm run build  # сборка проекта
-npm test      # запуск тестов
+- npm run start   # запуск проекта
+- npm run build  # сборка проекта
+- npm test      # запуск тестов
 
 ✉️ Контакты
 Ваше имя телеграм - @dscaunt
