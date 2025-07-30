@@ -64,22 +64,23 @@ function App() {
   const itemsLeft = todoList?.filter((i) => i.completed === false).length;
 
   return (
-    <>
-      <section className="flex h-[100svh] w-full flex-col items-center bg-gray-200 pb-[50px] text-black">
+      <section className="flex h-[100svh] w-full min-w-[375px] flex-col items-center overflow-hidden bg-gray-200 pb-[50px] text-black">
         <div className="">
-          <h1 className="font-poppins text-shadow-2xl-lg text-[9rem] font-extralight text-yellow-600 text-shadow-zinc-600">
+          <h1 className="font-poppins text-[4rem] font-extralight text-yellow-600 text-shadow-lg text-shadow-zinc-600 sm:text-[9rem]">
             todos
           </h1>
         </div>
-        <div className="font-roboto h-8/12 w-11/12 max-w-[808px] font-light">
+        <div className="font-roboto h-8/12 w-11/12 max-w-[808px] grow font-light">
           <div className="flex h-full w-full flex-col justify-between">
             <div className="relative h-full w-full">
               {/* страница всех дел */}
               {/* {activePage === "all" && ( */}
               <div
-                className={`${activePage === "all" ? "z-20" : activePage === "active" ? "-bottom-[77px] z-10 scale-x-97" : "-bottom-[87px] z-0 scale-x-95"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-300`}
+                className={`${activePage === "all" ? "bottom-0 z-20" : activePage === "active" ? "-bottom-[77px] z-10 scale-x-97" : "-bottom-[87px] z-0 scale-x-95"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-1000`}
               >
-                <div className="sticky top-0 left-0 z-10 border-b-2 border-gray-200 bg-white p-5 hover:hover:bg-gray-50">
+                <div
+                  className={`${activePage === "all" ? "opacity-100" : "opacity-0"} sticky top-0 left-0 z-10 border-b-2 border-gray-200 bg-white p-5 transition-all duration-1000 hover:hover:bg-gray-50`}
+                >
                   <form
                     onSubmit={(e) => {
                       e.preventDefault();
@@ -114,7 +115,7 @@ function App() {
                   </form>
                 </div>
                 <div
-                  className={`${activePage === "all" ? "opacity-100" : "opacity-0"} flex h-full min-h-[300px] grow flex-col overflow-y-auto`}
+                  className={`${activePage === "all" ? "opacity-100" : "opacity-0"} flex h-full grow flex-col overflow-y-auto`}
                 >
                   {todoList?.map((item) => (
                     <Todo
@@ -132,10 +133,10 @@ function App() {
               {/* страница активный дел */}
               {/* {activePage === "active" && ( */}
               <div
-                className={`${activePage === "active" ? "z-20" : "-bottom-[77px] z-10 scale-x-97"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-300`}
+                className={`${activePage === "active" ? "bottom-0 z-20" : "-bottom-[77px] z-10 scale-x-97"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-1000`}
               >
                 <div
-                  className={`${activePage === "active" ? "opacity-100" : "opacity-0"} flex min-h-[300px] grow flex-col overflow-y-auto`}
+                  className={`${activePage === "active" ? "opacity-100" : "opacity-0"} flex grow flex-col overflow-y-auto transition-all duration-1000`}
                 >
                   {todoList
                     ?.filter((todo) => todo.completed === false)
@@ -154,11 +155,11 @@ function App() {
               {/* )} */}
               {/* страница выполненных дел */}
               <div
-                className={`${activePage === "completed" ? "z-20" : "-bottom-[87px] z-0 scale-x-95"} absolute flex h-full w-full flex-col bg-white transition-all duration-300`}
+                className={`${activePage === "completed" ? "bottom-0 z-20" : "-bottom-[87px] z-0 scale-x-95"} absolute flex h-full w-full flex-col bg-white transition-all duration-1000`}
               >
                 {/* {activePage === "completed" && ( */}
                 <div
-                  className={`${activePage === "completed" ? "opacity-100" : "opacity-0"} flex min-h-[300px] grow flex-col overflow-y-auto`}
+                  className={`${activePage === "completed" ? "opacity-100" : "opacity-0"} flex grow flex-col overflow-y-auto transition-all duration-1000`}
                 >
                   {todoList
                     ?.filter((todo) => todo.completed === true)
@@ -186,7 +187,6 @@ function App() {
           </div>
         </div>
       </section>
-    </>
   );
 }
 

@@ -2,36 +2,38 @@
   "name": "my-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://diskaunt.github.io/todoList",
+  "homepage": "https://diskaunt.github.io/todoList/",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "test": "vitest",
-    "test:watch": "vitest watch",
-    "test:ui": "vitest --ui",
-    "test:coverage": "vitest run --coverage",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "start": "yarn vite",
+    "dev": "yarn vite",
+    "build": "yarn tsc -b && yarn vite build",
+    "lint": "yarn eslint .",
+    "preview": "yarn vite preview",
+    "test": "yarn vitest",
+    "test:watch": "yarn vitest watch",
+    "test:ui": "yarn vitest --ui",
+    "test:coverage": "yarn vitest run --coverage",
+    "predeploy": "yarn build",
+    "deploy": "yarn gh-pages -d dist",
+    "typecheck": "yarn tsc --noEmit"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-router": "^7.5.0",
     "tailwindcss": "^4.1.3"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "@vitejs/plugin-react": "^4.3.4",
-    "@vitest/coverage-v8": "^1.6.0",
-    "@vitest/ui": "^1.6.0",
+    "@vitest/coverage-v8": "^3.1.1",
+    "@vitest/ui": "^3.1.1",
     "eslint": "^9.21.0",
     "eslint-plugin-react-hooks": "^5.1.0",
     "eslint-plugin-react-refresh": "^0.4.19",
@@ -43,6 +45,6 @@
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.26.1",
     "vite": "^6.2.0",
-    "vitest": "^1.6.0"
+    "vitest": "^3.1.1"
   }
 }

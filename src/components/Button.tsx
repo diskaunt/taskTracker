@@ -26,7 +26,7 @@ const Button = memo(
 
     return (
       <button
-        className={`rounded-sm px-1 transition-colors ${
+        className={`rounded-sm px-2.5 transition-colors ${
           isActive
             ? "border-1 border-gray-400 hover:bg-gray-100"
             : "border-0 hover:bg-gray-100"
