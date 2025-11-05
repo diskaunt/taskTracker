@@ -1,7 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.js";
+import "./assets/global.css";
+import AppLayout from "./layouts/applayout/AppLayouts";
 
 const rootElement = document.getElementById("root");
 
@@ -14,6 +14,6 @@ const root = createRoot(rootElement);
 // 2. Рендерим приложение
 root.render(
   <StrictMode>
-    <App />
+    <AppLayout />
   </StrictMode>,
 );

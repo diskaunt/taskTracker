@@ -4,12 +4,15 @@
 
 @theme {
 	--font-poppins: "Poppins", sans-serif;
+	--font-roboto: "Roboto", sans-serif;
+	--height-main: calc(100svh - 64px - 40px);
 }
 
-@theme {
-	--font-roboto: "Roboto", sans-serif;
-}
 
 button {
 	cursor: pointer;
+}
+
+:root {
+	overflow-y: hidden;
 }

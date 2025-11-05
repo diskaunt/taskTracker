@@ -1,5 +1,5 @@
 import { memo, ReactNode } from "react";
-import { ActivePage } from "../App";
+import { ActivePage } from "../../types";
 
 export interface ButtonProps {
   children: ReactNode;
@@ -27,10 +27,8 @@ const Button = memo(
     return (
       <button
         className={`rounded-sm px-2.5 transition-colors ${
-          isActive
-            ? "border-1 border-gray-400 hover:bg-gray-100"
-            : "border-0 hover:bg-gray-100"
-        }`}
+          isActive ? "border-1 border-zinc-400" : "border-0"
+        } hover:bg-zinc-100 dark:hover:bg-zinc-600`}
         onClick={handleClick}
       >
         {children}

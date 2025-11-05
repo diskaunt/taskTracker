@@ -5,7 +5,7 @@ import {
   fireEvent,
   cleanup,
 } from "@testing-library/react";
-import App from "../App";
+import App from "../layouts/applayout/AppLayouts";
 
 describe("App Component", () => {
   // Автоматическая очистка после каждого теста
