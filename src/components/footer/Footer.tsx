@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer: React.FC = () => {
   return (
-    <div className="w-full text-center p-2">
+    <footer className="w-full p-2 text-center">
       <span className="text-zinc-400">
         provided by&nbsp;
         <a
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
           diskaunt
         </a>
       </span>
-    </div>
+    </footer>
   );
 };
 

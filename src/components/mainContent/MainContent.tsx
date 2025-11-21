@@ -1,9 +1,10 @@
-import { FormEvent, useCallback, useState } from "react";
-import Todo from "../todo/Todo";
+import React, { FormEvent, useCallback, useState } from "react";
 import { ActivePage } from "../../types";
 import useLoadTodo from "../../hooks/useLoadTodo";
 import Nav from "../nav/Nav";
 import Icon from "../icon/Icon";
+
+const Todo = React.lazy(() => import("../todo/Todo"));
 
 const MainContent: React.FC = () => {
   const [activePage, setActivePage] = useState<ActivePage>("all");
@@ -55,13 +56,13 @@ const MainContent: React.FC = () => {
   const itemsLeft = todoList.filter((i) => i.completed === false).length;
 
   return (
-    <main className="h-main flex w-full flex-col items-center overflow-hidden pb-20 text-black">
-      <div className="font-roboto h-max w-11/12 grow px-5 font-light">
+    <main className="h-main flex w-full flex-col items-center pb-5 text-black">
+      <div className="font-roboto w-11/12 h-full grow px-5 font-light">
         <div className="flex h-full w-full flex-col justify-between">
-          <div className="relative h-full w-full">
-            {/* страница всех дел */}
+          <div className="relative h-full w-full ">
+            {/* поле добавления новых дел */}
             <div
-              className={`${activePage === "all" ? "z-20 translate-y-0" : activePage === "active" ? "z-10 translate-y-[77px] scale-x-97" : "z-0 translate-y-[87px] scale-x-95"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-300 dark:bg-zinc-700`}
+              className={`${activePage === "all" ? "z-20 translate-y-0 opacity-100" : activePage === "active" ? "z-10 translate-y-[77px] scale-x-97" : "z-0 translate-y-[87px] scale-x-95"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-300 dark:bg-zinc-700`}
             >
               <div
                 className={`${activePage === "all" ? "opacity-100" : "opacity-0"} sticky top-0 left-0 z-10 border-b-2 border-zinc-200 bg-white p-5 transition-all duration-300 hover:bg-zinc-50 dark:border-zinc-500 dark:bg-zinc-700 dark:hover:bg-zinc-600`}
@@ -113,18 +114,19 @@ const MainContent: React.FC = () => {
               <div
                 className={`${activePage === "active" ? "opacity-100" : "opacity-0"} flex grow flex-col overflow-y-auto transition-all duration-300`}
               >
-                {todoList
-                  ?.filter((todo) => todo.completed === false)
-                  .map((item) => (
-                    <Todo
-                      key={item.id}
-                      id={item.id}
-                      completed={item.completed}
-                      onToggleCompleted={onToggleCompleted}
-                    >
-                      {item.text}
-                    </Todo>
-                  ))}
+                {activePage === "active" &&
+                  todoList
+                    ?.filter((todo) => todo.completed === false)
+                    .map((item) => (
+                      <Todo
+                        key={item.id}
+                        id={item.id}
+                        completed={item.completed}
+                        onToggleCompleted={onToggleCompleted}
+                      >
+                        {item.text}
+                      </Todo>
+                    ))}
               </div>
             </div>
             {/* страница выполненных дел */}
@@ -134,18 +136,19 @@ const MainContent: React.FC = () => {
               <div
                 className={`${activePage === "completed" ? "opacity-100" : "opacity-0"} flex grow flex-col overflow-y-auto transition-all duration-300`}
               >
-                {todoList
-                  ?.filter((todo) => todo.completed === true)
-                  .map((item) => (
-                    <Todo
-                      key={item.id}
-                      id={item.id}
-                      completed={item.completed}
-                      onToggleCompleted={onToggleCompleted}
-                    >
-                      {item.text}
-                    </Todo>
-                  ))}
+                {activePage === "completed" &&
+                  todoList
+                    ?.filter((todo) => todo.completed === true)
+                    .map((item) => (
+                      <Todo
+                        key={item.id}
+                        id={item.id}
+                        completed={item.completed}
+                        onToggleCompleted={onToggleCompleted}
+                      >
+                        {item.text}
+                      </Todo>
+                    ))}
               </div>
             </div>
           </div>

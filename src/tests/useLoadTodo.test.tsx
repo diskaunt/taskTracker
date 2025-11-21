@@ -10,7 +10,7 @@ describe("useLoadTodo hook", () => {
 
   test("should load initial todos when localStorage is empty", () => {
     const setTodos = vi.fn();
-    renderHook(() => useLoadTodo(null, setTodos));
+    renderHook(() => useLoadTodo());
 
     expect(setTodos).toHaveBeenCalledWith([
       { id: 1, text: "Покрытие тестами", completed: false },
@@ -26,7 +26,7 @@ describe("useLoadTodo hook", () => {
     localStorage.setItem("todosList", JSON.stringify(mockTodos));
 
     const setTodos = vi.fn();
-    renderHook(() => useLoadTodo(null, setTodos));
+    renderHook(() => useLoadTodo());
 
     expect(setTodos).toHaveBeenCalledWith(mockTodos);
   });

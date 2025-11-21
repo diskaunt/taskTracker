@@ -8,6 +8,7 @@
 	--height-main: calc(100svh - 64px - 40px);
 }
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 button {
 	cursor: pointer;
