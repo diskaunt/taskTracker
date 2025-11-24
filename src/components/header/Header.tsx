@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import Icon from "../icon/Icon";
 import classNames from "classnames";
 import { ThemeContext } from "../../themeContext/ThemeProvider";

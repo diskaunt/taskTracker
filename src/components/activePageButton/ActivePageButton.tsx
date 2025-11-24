@@ -1,5 +1,6 @@
 import { memo, ReactNode } from "react";
 import { ActivePage } from "../../types";
+import classNames from "classnames";
 
 export interface ButtonProps {
   children: ReactNode;
@@ -8,7 +9,7 @@ export interface ButtonProps {
   onClearCompleted?: () => void;
 }
 
-const Button = memo(
+const ActivePageButton = memo(
   ({ children, activePage = null, setActivePage = () => {} }: ButtonProps) => {
     // Функция переключения активной страницы
     const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -26,9 +27,11 @@ const Button = memo(
 
     return (
       <button
-        className={`rounded-sm px-2.5 transition-colors ${
-          isActive ? "border-1 border-zinc-400" : "border-0"
-        } hover:bg-zinc-100 dark:hover:bg-zinc-600`}
+        className={classNames(
+          "rounded-sm px-2.5 transition-colors",
+          isActive ? "border-1 border-zinc-400" : "border-0",
+          "hover:bg-zinc-100 dark:hover:bg-zinc-600",
+        )}
         onClick={handleClick}
       >
         {children}
@@ -37,4 +40,4 @@ const Button = memo(
   },
 );
 
-export default Button;
+export default ActivePageButton;

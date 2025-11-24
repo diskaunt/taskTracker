@@ -32,18 +32,6 @@ const useLoadTodo = (): [
     }
   }, []);
 
-  // сохраняем в локальное хранилища новые дела при изменение списка дел
-  useEffect(() => {
-    // это защищает от установки null при ререндере
-    if (todoList) {
-      try {
-        localStorage.setItem("todosList", JSON.stringify(todoList));
-      } catch (error) {
-        console.error("Failed to save todos:", error);
-      }
-    }
-  }, [todoList]);
-
   return [todoList, setTodos];
 };
 

@@ -1,5 +1,5 @@
 import { memo } from "react";
-import Button from "../button/Button";
+import Button from "../activePageButton/ActivePageButton";
 import { NavProps } from "../../types";
 
 const Nav: React.FC<NavProps> = memo(
