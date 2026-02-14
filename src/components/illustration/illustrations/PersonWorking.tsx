@@ -1,10 +1,6 @@
 import { SVGProps } from "react";
 
-interface PersonWorkingProps {
-  props: SVGProps<SVGSVGElement>;
-}
-
-const PersonWorking: React.FC<PersonWorkingProps> = (props) => (
+const PersonWorking: React.FC<SVGProps<SVGSVGElement>> = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     // width={556}

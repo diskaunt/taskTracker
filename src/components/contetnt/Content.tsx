@@ -1,14 +1,11 @@
-import Footer from "../footer/Footer";
-import Task from "../../pages/tasks/Task";
-import { ThemeContext } from "../../themeContext/ThemeProvider";
-import { useContext } from "react";
+import Header from "../header/Header";
+import MainContent from "../mainContent/MainContent";
 
-const Content = () => {
-  const { theme } = useContext(ThemeContext);
+const Content : React.FC<{title: string}> = ({title}) => {
   return (
-    <div data-theme={theme}>
-      <Task />
-      <Footer />
+    <div className={"relative flex flex-col w-full h-full"}>
+      <Header title = {title}/>
+      <MainContent />
     </div>
   );
 };

@@ -9,7 +9,10 @@ type IllustrationProps = {
   name: keyof typeof illustrations;
   className?: string;
 };
-const Illustration: React.FC<IllustrationProps> = ({ name, className }) => {
+const Illustration: React.FC<IllustrationProps> = ({
+  name,
+  className = "",
+}) => {
   const CurrentIllustration = illustrations[name];
   return <CurrentIllustration className={className} />;
 };

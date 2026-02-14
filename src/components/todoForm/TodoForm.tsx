@@ -16,18 +16,19 @@ const TodoForm: React.FC<TodoFormProps> = memo(({ todoList, setTodos }) => {
       const text = newTodoText.trim();
       //
       if (text && todoList) {
-        setTodos([
+        const newTodoList = [
           {
             id: todoList.length + 1,
             text: text,
             completed: false,
           },
           ...todoList,
-        ]);
+        ];
+        setTodos(newTodoList);
         setNewTodoText("");
         // Записываем в локальное хранилище
         try {
-          localStorage.setItem("todosList", JSON.stringify(todoList));
+          localStorage.setItem("todosList", JSON.stringify(newTodoList));
         } catch (error) {
           console.error("Failed to save todos:", error);
         }
@@ -54,7 +55,7 @@ const TodoForm: React.FC<TodoFormProps> = memo(({ todoList, setTodos }) => {
         type="submit"
         data-testid="addTodo-button"
         disabled={newTodoText ? false : true}
-        className="h-max stroke-4 w-max stroke-green-500 disabled:cursor-not-allowed disabled:stroke-zinc-400 dark:stroke-green-400 dark:disabled:stroke-zinc-200"
+        className="h-max w-max stroke-green-500 stroke-4 disabled:cursor-not-allowed disabled:stroke-zinc-400 dark:stroke-green-400 dark:disabled:stroke-zinc-200"
       >
         <Icon name="CheckMark" className="h-[24px] w-[24px]" />
       </button>

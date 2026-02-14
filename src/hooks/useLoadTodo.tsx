@@ -1,17 +1,13 @@
 import { useEffect, useState } from "react";
 import { TodoList } from "../types";
 
-const initTodoList = [
-  { id: 1, text: "Покрытие тестами", completed: false },
-  { id: 2, text: "Прекрасный код", completed: true },
-  { id: 3, text: "Тестовое задание", completed: false },
-];
+const initTodoList: TodoList[] = [];
 
 const useLoadTodo = (): [
   TodoList[],
   React.Dispatch<React.SetStateAction<TodoList[]>>,
 ] => {
-  const [todoList, setTodos] = useState<TodoList[]>([]);
+  const [todoList, setTodos] = useState<TodoList[]>(initTodoList);
   // загружаем список дел при первой загрузке
   useEffect(() => {
     try {

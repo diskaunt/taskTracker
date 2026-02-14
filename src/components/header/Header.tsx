@@ -3,7 +3,7 @@ import Icon from "../icon/Icon";
 import classNames from "classnames";
 import { ThemeContext } from "../../themeContext/ThemeProvider";
 
-const Header = () => {
+const Header: React.FC<{ title: string }> = ({ title }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
@@ -15,7 +15,7 @@ const Header = () => {
         <div className="flex items-center gap-1">
           <Icon className={"w-[40px] fill-yellow-600"} name={"Todomvc"} />
           <h1 className="font-poppins w-max text-[2rem] font-bold text-yellow-600 text-shadow-amber-800 text-shadow-lg">
-            todos
+            {title}
           </h1>
         </div>
         <div className="flex items-center">

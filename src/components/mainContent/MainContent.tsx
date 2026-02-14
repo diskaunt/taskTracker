@@ -1,12 +1,12 @@
-import React, { FormEvent, useCallback, useMemo, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { ActivePage } from "../../types";
 import useLoadTodo from "../../hooks/useLoadTodo";
-import Nav from "../nav/Nav";
-import Illustration from "../illustration/Illustration";
-import TodoForm from "../todoForm/TodoForm";
-import ActiveTodoList from "../activeTodoList/ActiveTodoList";
 
-const Todo = React.lazy(() => import("../todo/Todo"));
+const ActiveTodoList = React.lazy(
+  () => import("../activeTodoList/ActiveTodoList"),
+);
+const Nav = React.lazy(() => import("../nav/Nav"));
+const TodoForm = React.lazy(() => import("../todoForm/TodoForm"));
 
 const MainContent: React.FC = () => {
   const [activePage, setActivePage] = useState<ActivePage>("all");
@@ -34,7 +34,20 @@ const MainContent: React.FC = () => {
           .filter((todo) => todo.completed === false)
           .map((todo, index) => ({ ...todo, id: index + 1 })),
     );
-  }, []);
+    try {
+      localStorage.setItem(
+        "todosList",
+        JSON.stringify(
+          todoList &&
+            todoList
+              .filter((todo) => todo.completed === false)
+              .map((todo, index) => ({ ...todo, id: index + 1 })),
+        ),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }, [todoList]);
 
   const activeList = todoList.filter((todo) => todo.completed === false);
 
@@ -43,13 +56,13 @@ const MainContent: React.FC = () => {
   const itemsLeft = todoList.filter((i) => i.completed === false).length;
 
   return (
-    <main className="h-main flex w-full flex-col items-center pb-5 text-black">
-      <div className="font-roboto h-full w-11/12 grow px-5 font-light">
+    <main className="flex grow h-fit w-full flex-col items-center text-black">
+      <div className="font-roboto h-full w-full grow font-light">
         <div className="flex h-full w-full flex-col justify-between">
           <div className="relative h-full w-full">
             {/* страница всех дел */}
             <section
-              className={`${activePage === "all" ? "z-20 translate-y-0 opacity-100" : activePage === "active" ? "z-10 translate-y-[77px] scale-x-97" : "z-0 translate-y-[87px] scale-x-95"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-300 dark:bg-zinc-700`}
+              className={`${activePage === "all" ? "z-20 translate-y-0 opacity-100" : activePage === "active" ? "z-10 translate-y-[77px] scale-x-97" : "z-0 translate-y-[87px] scale-x-95"} absolute flex h-full w-full flex-col overflow-hidden bg-white shadow-2xl transition-all duration-300 dark:bg-zinc-700`}
             >
               {/* форма для инпута */}
               <div
@@ -68,7 +81,7 @@ const MainContent: React.FC = () => {
             </section>
             {/* страница активный дел */}
             <section
-              className={`${activePage === "active" ? "z-20 translate-y-0" : "z-10 translate-y-[77px] scale-x-97"} absolute flex h-full w-full flex-col bg-white shadow-2xl transition-all duration-300 dark:bg-zinc-700`}
+              className={`${activePage === "active" ? "z-20 translate-y-0" : "z-10 translate-y-[77px] scale-x-97"} absolute flex h-full w-full flex-col overflow-hidden bg-white shadow-2xl transition-all duration-300 dark:bg-zinc-700`}
             >
               <div
                 className={`${activePage === "active" ? "opacity-100" : "opacity-0"} flex grow flex-col overflow-y-auto transition-all duration-300`}
@@ -81,7 +94,7 @@ const MainContent: React.FC = () => {
             </section>
             {/* страница выполненных дел */}
             <section
-              className={`${activePage === "completed" ? "z-20 translate-y-0" : "z-0 translate-y-[87px] scale-x-95"} absolute bottom-0 flex h-full w-full flex-col bg-white transition-all duration-300 dark:bg-zinc-700`}
+              className={`${activePage === "completed" ? "z-20 translate-y-0" : "z-0 translate-y-[87px] scale-x-95"} absolute bottom-0 flex h-full w-full flex-col overflow-hidden bg-white transition-all duration-300 dark:bg-zinc-700`}
             >
               <div
                 className={`${activePage === "completed" ? "opacity-100" : "opacity-0"} flex grow flex-col overflow-y-auto transition-all duration-300`}
